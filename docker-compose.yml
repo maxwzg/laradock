@@ -38,7 +38,7 @@ services:
             # IMPORTANT: Replace with your Docker Host IP (will be appended to /etc/hosts)
             - "dockerhost:10.0.75.1"
         ports:
-           - "2222:22"
+           - "2223:22"
         tty: true
 
 ### PHP-FPM Container #######################################
