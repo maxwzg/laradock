@@ -37,6 +37,20 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 #
 
 #####################################
+# phpredis:
+#####################################
+
+ARG INSTALL_PHPREDIS=false
+RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
+    # Install the xdebug extension
+    pecl install redis && \
+    docker-php-ext-enable redis \
+;fi
+
+# Copy xdebug configration for remote debugging
+COPY ./phpredis.ini /usr/local/etc/php/conf.d/phpredis.ini
+
+#####################################
 # SOAP:
 #####################################
 
@@ -44,7 +58,7 @@ ARG INSTALL_SOAP=false
 RUN if [ ${INSTALL_SOAP} = true ]; then \
     # Install the soap extension
     apt-get -y update && \
-    apt-get -y install libxml2-dev && \ 
+    apt-get -y install libxml2-dev && \
     docker-php-ext-install soap \
 ;fi
 
