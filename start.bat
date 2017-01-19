@@ -1,1 +1,1 @@
-cmd /c start.sh
+docker-compose stop && docker-compose up -d nginx memcached redis mysql
